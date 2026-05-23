@@ -62,9 +62,9 @@ return [
         ->content(InjectSeoTags::class),
 
     (new Extend\Event())
-        ->listen(Started::class, [SendToGoogleConsole::class, 'whenDiscussionStarted'])
-        ->listen(Posted::class, [SendToGoogleConsole::class, 'whenPostCreated'])
-        ->listen(Revised::class, [SendToGoogleConsole::class, 'whenPostRevised']),
+        ->listen(Started::class, SendToGoogleConsole::class.'@whenDiscussionStarted')
+        ->listen(Posted::class, SendToGoogleConsole::class.'@whenPostCreated')
+        ->listen(Revised::class, SendToGoogleConsole::class.'@whenPostRevised'),
 
     // Konsol komutu aktif kalsın (Manuel çalıştırma için: php flarum seo:auto-index)
     (new Extend\Console())
