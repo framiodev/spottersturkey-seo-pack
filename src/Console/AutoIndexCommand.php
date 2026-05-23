@@ -27,12 +27,12 @@ class AutoIndexCommand extends AbstractCommand
              ->setDescription('Görsel içerikli mesajları otomatik olarak Google Indexing API\'ye gönderir.');
     }
 
-    protected function fire()
+    protected function fire(): int
     {
         $keyFile = storage_path('service_account.json');
         if (!file_exists($keyFile)) {
             $this->error('service_account.json dosyası bulunamadı.');
-            return;
+            return 1;
         }
 
         // Google Client Ayarları
@@ -100,5 +100,6 @@ class AutoIndexCommand extends AbstractCommand
         }
 
         $this->info("Son 24 saatteki $count adet URL Google'a başarıyla bildirildi.");
+        return 0;
     }
 }

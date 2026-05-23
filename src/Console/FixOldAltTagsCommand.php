@@ -23,9 +23,9 @@ class FixOldAltTagsCommand extends AbstractCommand
              ->setDescription('Eski mesajlardaki [spotter-image] alt etiketlerini toplu olarak günceller.');
     }
 
-    protected function fire()
+    protected function fire(): int
     {
-        $this->info('Eski mesajlar taranıyor...');
+        $this->info('SpottersTurkey SEO: Görsel Alt Etiketi Tarama İşlemi Başlıyor...');
 
         $query = CommentPost::where('content', 'like', '%spotter-image%')
             ->orWhere('content', 'like', '%upl-image-preview%');
@@ -99,5 +99,6 @@ class FixOldAltTagsCommand extends AbstractCommand
         });
 
         $this->info("İşlem tamamlandı: $processed mesaj tarandı, $updated mesaj güncellendi.");
+        return 0;
     }
 }
